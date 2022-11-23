@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/login.css">
+    <title>Connexion</title>
+</head>
+<body>
+    <h1 class="centered">Se connecter au Xbox Live</h1>
+
+    <div class="container">
+        <form action="login.php" method="post">
+            <div class="option-component">
+                <label for="1">Nom d'utilisateur:</label>
+                <input id="1" name="username" required>
+            </div>
+
+            <div class="option-component">
+                <label for="2">Mot de passe:</label>
+                <input id="2" name="password" required>
+            </div>
+
+            <input class="sendform" type="submit" value="Connexion" />
+        </form>
+    </div>
+</body>
+</html>

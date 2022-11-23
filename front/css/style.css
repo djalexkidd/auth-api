@@ -1,0 +1,27 @@
+/* Aucune bordure */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Police d'écriture */
+@font-face {
+    font-family: 'IBMPlexSans';
+    src : url('../fonts/IBMPlexSans.ttf') format('truetype');
+}
+
+/* Corps de la page */
+body {
+    font-family: "IBMPlexSans", Arial, Helvetica, sans-serif;
+}
+
+.centered {
+    text-align: center;
+}
+
+.flex-centered {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
