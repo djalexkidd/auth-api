@@ -23,4 +23,8 @@ class db_connect {
         $this->password=$password;
         $this->server=$server;
     }
+
+    public function connect() {
+        $dbh = new PDO("mysql:host=".$this->server.";"."dbname=".$this->db, $this->username, $this->password);
+    }
 }
