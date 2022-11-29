@@ -33,4 +33,23 @@ class db_connect {
             print($row['email']);
         }
     }
+
+    public function register($username, $password) {
+        $dbh = new PDO("mysql:host=".$this->db_host.";"."dbname=".$this->db_name, $this->db_username, $this->db_password);
+
+        $options = [
+            'cost' => 12,
+        ];
+
+        $data = [
+            'id' => 0,
+            'username' => $username,
+            'password' => password_hash($password, PASSWORD_BCRYPT, $options),
+            'rank' => "member",
+        ];
+
+        $sql = "INSERT INTO users (id, email, password, rank) VALUES (:id, :username, :password, :rank)";
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute($data);
+    }
 }
