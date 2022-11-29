@@ -12,7 +12,7 @@
     <h1 class="centered">S'inscrire au Xbox Live</h1>
 
     <div class="container">
-        <form action="/back/register.php" method="post">
+        <form action="/back/register.php" method="post" id="myForm">
             <div class="option-component">
                 <label for="1">E-mail:</label>
                 <input type="email" id="1" name="username" required>
@@ -25,11 +25,12 @@
 
             <div class="option-component">
                 <label for="3">Confirmer mot de passe:</label>
-                <input id="3" name="password" required>
+                <input id="3" name="confirmPassword" required>
             </div>
 
             <input class="sendform" type="submit" value="Inscription" />
         </form>
     </div>
+    <script src="js/register.js"></script>
 </body>
 </html>
