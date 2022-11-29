@@ -24,16 +24,31 @@ class db_connect {
         $this->db_host=$db_host;
     }
 
-    public function connect() {
+    /**
+     * Connexion à un compte utilisateur
+     * @param string $username Nom d'utilisateur
+     * @param string $password Mot de passe de l'utilisateur
+     */
+    public function connect($username, $password) {
         $dbh = new PDO("mysql:host=".$this->db_host.";"."dbname=".$this->db_name, $this->db_username, $this->db_password);
         // utiliser la connexion ici
-        $sth = $dbh->query('SELECT * FROM users');
+        $sth = $dbh->prepare("SELECT * FROM users WHERE email = '$username'");
+        $sth->execute();
+        $result = $sth->fetchAll();
 
-        foreach ($sth as $row) {
-            print($row['email']);
+        if ($username == $result[0]['email'] && password_verify($password, $result[0]['password'])) {
+            echo "Connecté";
+            session_start();
+        } else {
+            echo "Incorrect";
         }
     }
 
+    /**
+     * Création d'un nouvel utilisateur
+     * @param string $username Nom d'utilisateur
+     * @param string $password Mot de passe de l'utilisateur
+     */
     public function register($username, $password) {
         $dbh = new PDO("mysql:host=".$this->db_host.";"."dbname=".$this->db_name, $this->db_username, $this->db_password);
 
@@ -51,5 +66,14 @@ class db_connect {
         $sql = "INSERT INTO users (id, email, password, rank) VALUES (:id, :username, :password, :rank)";
         $stmt = $dbh->prepare($sql);
         $stmt->execute($data);
+    }
+
+    public function logout() {
+        session_destroy();
+    }
+
+    public function get_table_data() {
+        // TODO : C'est de la merde ça ne marche pas
+        echo session_status();
     }
 }
