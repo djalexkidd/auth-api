@@ -89,11 +89,20 @@ class db_connect {
         $sth->execute();
         $result = $sth->fetchAll();
 
-        if ($_COOKIE['token'] == $result[0]['token']) {
+        if ($_COOKIE['token'] == $result[0]['token'] && $_COOKIE['token'] != null) {
             return True;
         }
         else {
             return False;
         }
+    }
+
+    public function get_table($table) {
+        $dbh = new PDO("mysql:host=".$this->db_host.";"."dbname=".$this->db_name, $this->db_username, $this->db_password);
+        $sth = $dbh->prepare("SELECT * FROM $table");
+        $sth->execute();
+        $result = $sth->fetchAll();
+
+        return $result;
     }
 }

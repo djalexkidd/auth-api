@@ -25,3 +25,14 @@ body {
     justify-content: center;
     gap: 20px;
 }
+
+ul {
+    margin-left: 20px;
+    font-size: 32px;
+}
+
+li {
+    list-style: disc outside none;
+    display: list-item;
+    margin-left: 1em;
+}
