@@ -18,3 +18,7 @@ button:hover {
 .hidden {
     display: none;
 }
+
+.user-status {
+    font-size: 32px;
+}
