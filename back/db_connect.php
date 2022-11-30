@@ -71,16 +71,14 @@ class db_connect {
         $sql = "INSERT INTO users (id, email, password, rank) VALUES (:id, :username, :password, :rank)";
         $stmt = $dbh->prepare($sql);
         $stmt->execute($data);
-
-        header('Location: /front/login.html');
-        exit;
     }
 
     public function logout() {
         setcookie("token", null, 1);
 
-        header('Location: /front/index.html');
-        exit;
+        $dbh = new PDO("mysql:host=".$this->db_host.";"."dbname=".$this->db_name, $this->db_username, $this->db_password);
+        $insertToken = $dbh->prepare("UPDATE users SET token = null WHERE token = '$_COOKIE[token]'");
+        $insertToken->execute();
     }
 
     public function is_user_connected() {
@@ -113,6 +111,12 @@ class db_connect {
         $result = $sth->fetchAll();
 
         return $result;
+    }
 
+    public function add_fruit($fruit_name) {
+        $dbh = new PDO("mysql:host=".$this->db_host.";"."dbname=".$this->db_name, $this->db_username, $this->db_password);
+        $sql = "INSERT INTO fruits (name) VALUES ('$fruit_name')";
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute();
     }
 }
