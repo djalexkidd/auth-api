@@ -73,6 +73,9 @@ class db_connect {
         $stmt->execute($data);
     }
 
+    /**
+     * Déconnexion de l'utilisateur
+     */
     public function logout() {
         setcookie("token", null, 1);
 
@@ -81,6 +84,10 @@ class db_connect {
         $insertToken->execute();
     }
 
+    /**
+     * Vérifie si l'utilisateur est connecté
+     * @return bool
+     */
     public function is_user_connected() {
         $dbh = new PDO("mysql:host=".$this->db_host.";"."dbname=".$this->db_name, $this->db_username, $this->db_password);
         $sth = $dbh->prepare("SELECT token FROM users WHERE token = '$_COOKIE[token]'");
@@ -95,6 +102,11 @@ class db_connect {
         }
     }
 
+    /**
+     * Sélectionne tout dans une table
+     * @param string $table Nom de la table
+     * @return array
+     */
     public function get_table($table) {
         $dbh = new PDO("mysql:host=".$this->db_host.";"."dbname=".$this->db_name, $this->db_username, $this->db_password);
         $sth = $dbh->prepare("SELECT * FROM $table");
@@ -104,6 +116,10 @@ class db_connect {
         return $result;
     }
 
+    /**
+     * Récupère les informations de l'utilisateur connecté
+     * @return array
+     */
     public function get_myself_info() {
         $dbh = new PDO("mysql:host=".$this->db_host.";"."dbname=".$this->db_name, $this->db_username, $this->db_password);
         $sth = $dbh->prepare("SELECT email, rank FROM users WHERE token = '$_COOKIE[token]'");
@@ -113,6 +129,10 @@ class db_connect {
         return $result;
     }
 
+    /**
+     * Ajouter un fruit
+     * @param string $fruit_name Nom du fruit
+     */
     public function add_fruit($fruit_name) {
         $dbh = new PDO("mysql:host=".$this->db_host.";"."dbname=".$this->db_name, $this->db_username, $this->db_password);
         $sql = "INSERT INTO fruits (name) VALUES ('$fruit_name')";
@@ -120,6 +140,10 @@ class db_connect {
         $stmt->execute();
     }
 
+    /**
+     * Supprimer un fruit
+     * @param string $fruit_name Nom du fruit
+     */
     public function delete_fruit($fruit_name) {
         $dbh = new PDO("mysql:host=".$this->db_host.";"."dbname=".$this->db_name, $this->db_username, $this->db_password);
         $sql = "DELETE FROM fruits WHERE name = '$fruit_name'";
