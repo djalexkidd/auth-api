@@ -3,4 +3,6 @@ require("db_connect.php");
 
 $database = new db_connect("auth_api", "192.168.122.58", "admin", "bite");
 
-$database->get_table_data();
+if ($database->is_user_connected()) {
+    echo "bite";
+}

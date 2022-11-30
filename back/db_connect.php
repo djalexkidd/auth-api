@@ -36,9 +36,14 @@ class db_connect {
         $sth->execute();
         $result = $sth->fetchAll();
 
+        $token = uniqid();
+        $insertToken = $dbh->prepare("UPDATE users SET token = '$token' WHERE email = '$username'");
+
         if ($username == $result[0]['email'] && password_verify($password, $result[0]['password'])) {
-            echo "Connecté";
-            session_start();
+            $insertToken->execute();
+            setcookie("token", $token, time()+3600); // Le cookie expire dans 1 heure
+            header('Location: /front/index.html');
+            exit;
         } else {
             echo "Incorrect";
         }
@@ -66,14 +71,29 @@ class db_connect {
         $sql = "INSERT INTO users (id, email, password, rank) VALUES (:id, :username, :password, :rank)";
         $stmt = $dbh->prepare($sql);
         $stmt->execute($data);
+
+        header('Location: /front/login.html');
+        exit;
     }
 
     public function logout() {
-        session_destroy();
+        setcookie("token", null, 1);
+
+        header('Location: /front/index.html');
+        exit;
     }
 
-    public function get_table_data() {
-        // TODO : C'est de la merde ça ne marche pas
-        echo session_status();
+    public function is_user_connected() {
+        $dbh = new PDO("mysql:host=".$this->db_host.";"."dbname=".$this->db_name, $this->db_username, $this->db_password);
+        $sth = $dbh->prepare("SELECT token FROM users WHERE token = '$_COOKIE[token]'");
+        $sth->execute();
+        $result = $sth->fetchAll();
+
+        if ($_COOKIE['token'] == $result[0]['token']) {
+            return True;
+        }
+        else {
+            return False;
+        }
     }
 }
