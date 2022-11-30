@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="icon" href="img/favicon.png">
+    <title>Page d'administration</title>
+</head>
+<body>
+    <header>
+        <div class="flex-centered">
+            <button onclick="location.href='index.html';">Accueil</button>
+            <button onclick="location.href='/back/logout.php';">Se déconnecter</button>
+        </div>
+        </div>
+    </header>
+
+    <h1 class="centered">Page d'administration</h1>
+    <p class="centered">La page d'administration n'est accessible que par l'admin du site.</p>
+
+    <div class="container">
+    <form action="/back/add_fruit.php" method="post">
+        <div class="option-component">
+            <label for="1">Nom du fruit:</label>
+            <input type="email" id="1" name="username" required>
+        </div>
+
+        <input class="sendform" type="submit" />
+    </form>
+    </div>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>
