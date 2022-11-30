@@ -29,6 +29,10 @@ header {
     padding-right: 20px;
 }
 
+h1 {
+    font-size: 48px;
+}
+
 .centered {
     text-align: center;
 }

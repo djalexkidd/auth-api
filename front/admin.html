@@ -23,13 +23,28 @@
 
     <div class="container">
     <form action="/back/add_fruit.php" method="post">
+        <h2 class="centered">Ajouter un fruit</h2>
         <div class="option-component">
             <label for="1">Nom du fruit:</label>
             <input id="1" name="fruit" required>
         </div>
 
-        <input class="sendform" type="submit" />
+        <input class="sendform" type="submit" value="Ajouter" />
     </form>
+    </div>
+
+    <div class="container" style="background: rgb(178, 0, 0);">
+
+        <form action="/back/remove_fruit.php" method="post">
+            <h2 class="centered">Supprimer un fruit</h2>
+            <div class="option-component">
+                <label>Nom du fruit:</label>
+                <select class="affichage" name="fruit">
+                </select>
+            </div>
+
+            <input class="sendform" type="submit" value="Supprimer" />
+        </form>
     </div>
 
     <script src="js/admin.js"></script>
