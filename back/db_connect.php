@@ -119,4 +119,11 @@ class db_connect {
         $stmt = $dbh->prepare($sql);
         $stmt->execute();
     }
+
+    public function delete_fruit($fruit_name) {
+        $dbh = new PDO("mysql:host=".$this->db_host.";"."dbname=".$this->db_name, $this->db_username, $this->db_password);
+        $sql = "DELETE FROM fruits WHERE name = '$fruit_name'";
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute();
+    }
 }
