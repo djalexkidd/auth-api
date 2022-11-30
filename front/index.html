@@ -12,10 +12,17 @@
     <h1 class="centered">Page d'accueil</h1>
     <p class="centered">Tout le monde peut voir cette page.</p>
 
-    <div class="flex-centered">
+    <div class="flex-centered guest">
         <button onclick="location.href='login.html';">Se connecter</button>
         <button onclick="location.href='register.html';">S'inscrire</button>
     </div>
+
+    <div class="flex-centered member hidden">
+        <button onclick="location.href='userpage.html';">Page d'utilisateur</button>
+        <button onclick="location.href='/back/logout.php';">Se déconnecter</button>
+    </div>
+
+    <script src="js/is_connected.js"></script>
 
 </body>
 </html>

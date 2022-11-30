@@ -105,4 +105,14 @@ class db_connect {
 
         return $result;
     }
+
+    public function get_myself_info() {
+        $dbh = new PDO("mysql:host=".$this->db_host.";"."dbname=".$this->db_name, $this->db_username, $this->db_password);
+        $sth = $dbh->prepare("SELECT email, rank FROM users WHERE token = '$_COOKIE[token]'");
+        $sth->execute();
+        $result = $sth->fetchAll();
+
+        return $result;
+
+    }
 }
