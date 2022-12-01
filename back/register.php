@@ -9,7 +9,10 @@ require("db_connect.php");
 
 $database = new db_connect("auth_api", "192.168.122.58", "admin", "bite");
 
-$database->register($_REQUEST['username'], $_REQUEST['password']);
-
-header('Location: /front/login.html');
-exit;
+if ($database->register($_REQUEST['username'], $_REQUEST['password'])) {
+    header('Location: /front/login.html');
+    exit;
+} else {
+    header('Location: /front/register.html?status=exists');
+    exit;
+}

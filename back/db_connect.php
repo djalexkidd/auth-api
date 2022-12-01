@@ -54,6 +54,7 @@ class db_connect {
      * Création d'un nouvel utilisateur
      * @param string $username Nom d'utilisateur
      * @param string $password Mot de passe de l'utilisateur
+     * @return bool
      */
     public function register($username, $password) {
         $dbh = new PDO("mysql:host=".$this->db_host.";"."dbname=".$this->db_name, $this->db_username, $this->db_password);
@@ -73,11 +74,13 @@ class db_connect {
         $query->execute();
 
         if( $query->rowCount() > 0 ) { # If rows are found for query
-            die("L'utilisateur existe déjà");
+            return False;
         } else {
             $sql = "INSERT INTO users (id, email, password, rank) VALUES (:id, :username, :password, :rank)";
             $stmt = $dbh->prepare($sql);
             $stmt->execute($data);
+
+            return True;
         }
     }
 

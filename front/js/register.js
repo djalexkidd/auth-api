@@ -18,3 +18,10 @@ form.onsubmit = function () {
     alert("Les mots de passe ne correspondent pas.");
         return false;
 };
+
+const queryString = window.location.search.substring(1);
+const statusMessage = document.querySelector(".status");
+
+if (queryString === "status=exists") {
+    statusMessage.innerHTML = "L'utilisateur existe déjà";
+}
