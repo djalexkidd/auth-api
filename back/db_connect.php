@@ -68,9 +68,16 @@ class db_connect {
             'rank' => "member",
         ];
 
-        $sql = "INSERT INTO users (id, email, password, rank) VALUES (:id, :username, :password, :rank)";
-        $stmt = $dbh->prepare($sql);
-        $stmt->execute($data);
+        $query = $dbh->prepare("SELECT email FROM users WHERE email = '$username'");
+        $query->execute();
+
+        if( $query->rowCount() > 0 ) { # If rows are found for query
+            die("L'utilisateur existe déjà");
+        } else {
+            $sql = "INSERT INTO users (id, email, password, rank) VALUES (:id, :username, :password, :rank)";
+            $stmt = $dbh->prepare($sql);
+            $stmt->execute($data);
+        }
     }
 
     /**
