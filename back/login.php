@@ -9,4 +9,10 @@ require("db_connect.php");
 
 $database = new db_connect("auth_api", "192.168.122.58", "admin", "bite");
 
-$database->connect($_REQUEST['username'], $_REQUEST['password']);
+if ($database->connect($_REQUEST['username'], $_REQUEST['password'])) {
+    header('Location: /front/index.html');
+    exit;
+} else {
+    header('Location: /front/login.html?status=incorrect');
+    exit;
+}

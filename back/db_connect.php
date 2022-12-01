@@ -28,6 +28,7 @@ class db_connect {
      * Connexion à un compte utilisateur
      * @param string $username Nom d'utilisateur
      * @param string $password Mot de passe de l'utilisateur
+     * @return bool
      */
     public function connect($username, $password) {
         $dbh = new PDO("mysql:host=".$this->db_host.";"."dbname=".$this->db_name, $this->db_username, $this->db_password);
@@ -42,10 +43,10 @@ class db_connect {
         if ($username == $result[0]['email'] && password_verify($password, $result[0]['password'])) {
             $insertToken->execute();
             setcookie("token", $token, time()+3600); // Le cookie expire dans 1 heure
-            header('Location: /front/index.html');
-            exit;
+
+            return True;
         } else {
-            echo "Incorrect";
+            return False;
         }
     }
 
