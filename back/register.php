@@ -9,10 +9,15 @@ require("db_connect.php");
 
 $database = new db_connect("auth_api", "192.168.122.58", "admin", "bite");
 
-if ($database->register($_REQUEST['username'], $_REQUEST['password'])) {
-    header('Location: /front/login.html');
-    exit;
+if(filter_var($_REQUEST['username'], FILTER_VALIDATE_EMAIL)) {
+    if ($database->register($_REQUEST['username'], $_REQUEST['password'])) {
+        header('Location: /front/login.html');
+        exit;
+    } else {
+        header('Location: /front/register.html?status=exists');
+        exit;
+    }
 } else {
-    header('Location: /front/register.html?status=exists');
+    header('Location: /front/register.html?status=regexed');
     exit;
 }

@@ -24,4 +24,6 @@ const statusMessage = document.querySelector(".status");
 
 if (queryString === "status=exists") {
     statusMessage.innerHTML = "L'utilisateur existe déjà";
+} else if (queryString === "status=regexed") {
+    statusMessage.innerHTML = "L'email est incorrect";
 }
