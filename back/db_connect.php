@@ -68,6 +68,7 @@ class db_connect {
             'username' => $username,
             'password' => password_hash($password, PASSWORD_BCRYPT, $options),
             'rank' => "member",
+            'gravatar' => md5($username),
         ];
 
         $query = $dbh->prepare("SELECT email FROM users WHERE email = '$username'");
@@ -76,7 +77,7 @@ class db_connect {
         if( $query->rowCount() > 0 ) { # If rows are found for query
             return False;
         } else {
-            $sql = "INSERT INTO users (id, email, password, rank) VALUES (:id, :username, :password, :rank)";
+            $sql = "INSERT INTO users (id, email, password, rank, gravatar) VALUES (:id, :username, :password, :rank, :gravatar)";
             $stmt = $dbh->prepare($sql);
             $stmt->execute($data);
 
@@ -133,7 +134,7 @@ class db_connect {
      */
     public function get_myself_info() {
         $dbh = new PDO("mysql:host=".$this->db_host.";"."dbname=".$this->db_name, $this->db_username, $this->db_password);
-        $sth = $dbh->prepare("SELECT email, rank FROM users WHERE token = '$_COOKIE[token]'");
+        $sth = $dbh->prepare("SELECT email, rank, gravatar FROM users WHERE token = '$_COOKIE[token]'");
         $sth->execute();
         $result = $sth->fetchAll();
 

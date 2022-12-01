@@ -5,3 +5,10 @@
 .user-status {
     font-size: 32px;
 }
+
+.pfp {
+    display: block;
+    margin: 0 auto;
+    border: 5px solid red;
+    border-radius: 50px;
+}
