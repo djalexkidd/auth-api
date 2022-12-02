@@ -17,15 +17,15 @@ async function isConnected() {
 
             user_status.innerHTML = "Connecté en tant que " + data[0].email;
 
-            pfp.src = "https://www.gravatar.com/avatar/" + data[0].gravatar + "?s=320";
+            pfp.src = data[0].gravatar + "?s=40";
         } else if (data[0].rank === "admin") {
             member_buttons.classList.remove("hidden");
             guest_buttons.classList.add("hidden");
             admin_buttons.classList.remove("hidden");
 
-            user_status.innerHTML = "Connecté en tant que " + data[0].email + " (Administrateur)";
+            user_status.innerHTML = data[0].email + " 🛠️";
 
-            pfp.src = "https://www.gravatar.com/avatar/" + data[0].gravatar + "?s=320";
+            pfp.src = "https://www.gravatar.com/avatar/" + data[0].gravatar + "?s=40";
         }
 }
 
