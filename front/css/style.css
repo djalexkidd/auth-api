@@ -71,3 +71,8 @@ button:hover {
     background-color: #000000;
     color: white;
 }
+
+.disconnect {
+    background: rgb(215, 0, 0);
+    color: white;
+}

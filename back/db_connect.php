@@ -54,7 +54,7 @@ class db_connect {
      * Création d'un nouvel utilisateur
      * @param string $username Nom d'utilisateur
      * @param string $password Mot de passe de l'utilisateur
-     * @return bool
+     * @return bool Retourne True si l'utilisateur s'est bien enregistré ou False si ça a échoué
      */
     public function register($username, $password) {
         $dbh = new PDO("mysql:host=".$this->db_host.";"."dbname=".$this->db_name, $this->db_username, $this->db_password);
@@ -98,7 +98,7 @@ class db_connect {
 
     /**
      * Vérifie si l'utilisateur est connecté
-     * @return bool
+     * @return bool Retourne True si l'utilisateur s'est bien connecté ou False si ça a échoué
      */
     public function is_user_connected() {
         $dbh = new PDO("mysql:host=".$this->db_host.";"."dbname=".$this->db_name, $this->db_username, $this->db_password);
@@ -117,7 +117,7 @@ class db_connect {
     /**
      * Sélectionne tout dans une table
      * @param string $table Nom de la table
-     * @return array
+     * @return array Retourne le résultat de la table
      */
     public function get_table($table) {
         $dbh = new PDO("mysql:host=".$this->db_host.";"."dbname=".$this->db_name, $this->db_username, $this->db_password);
@@ -130,7 +130,7 @@ class db_connect {
 
     /**
      * Récupère les informations de l'utilisateur connecté
-     * @return array
+     * @return array Retourne les informations de l'utilisateur
      */
     public function get_myself_info() {
         $dbh = new PDO("mysql:host=".$this->db_host.";"."dbname=".$this->db_name, $this->db_username, $this->db_password);

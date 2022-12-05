@@ -6,5 +6,6 @@ CREATE TABLE `users` (
   `password` varchar(255) NOT NULL,
   `rank` varchar(10) NOT NULL,
   `token` varchar(32) DEFAULT NULL,
+  `gravatar` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
