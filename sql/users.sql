@@ -1,3 +1,5 @@
+CREATE DATABASE `auth_api` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+
 -- auth_api.users definition
 
 CREATE TABLE `users` (

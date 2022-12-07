@@ -28,7 +28,7 @@ class db_connect {
      * Connexion à un compte utilisateur
      * @param string $username Nom d'utilisateur
      * @param string $password Mot de passe de l'utilisateur
-     * @return bool
+     * @return bool Retourne True si l'utilisateur s'est bien connecté ou False si ça a échoué
      */
     public function connect($username, $password) {
         $dbh = new PDO("mysql:host=".$this->db_host.";"."dbname=".$this->db_name, $this->db_username, $this->db_password);
@@ -45,9 +45,9 @@ class db_connect {
             setcookie("token", $token, time()+3600); // Le cookie expire dans 1 heure
 
             return True;
-        } else {
-            return False;
         }
+
+        return False;
     }
 
     /**
@@ -109,9 +109,8 @@ class db_connect {
         if ($_COOKIE['token'] == $result[0]['token'] && $_COOKIE['token'] != null) {
             return True;
         }
-        else {
-            return False;
-        }
+
+        return False;
     }
 
     /**
