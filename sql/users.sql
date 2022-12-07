@@ -2,7 +2,7 @@ CREATE DATABASE `auth_api` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 
 -- auth_api.users definition
 
-CREATE TABLE `users` (
+CREATE TABLE `auth_api`.`users` (
   `id` int(4) NOT NULL AUTO_INCREMENT,
   `email` varchar(319) NOT NULL,
   `password` varchar(255) NOT NULL,
