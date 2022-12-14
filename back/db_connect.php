@@ -114,13 +114,14 @@ class db_connect {
     }
 
     /**
-     * Sélectionne tout dans une table
+     * Sélectionne des colonnes dans une table
      * @param string $table Nom de la table
+     * @param string $column Nom de la colonne
      * @return array Retourne le résultat de la table
      */
-    public function get_table($table) {
+    public function get_table($table, $column) {
         $dbh = new PDO("mysql:host=".$this->db_host.";"."dbname=".$this->db_name, $this->db_username, $this->db_password);
-        $sth = $dbh->prepare("SELECT * FROM $table");
+        $sth = $dbh->prepare("SELECT $column FROM $table");
         $sth->execute();
         $result = $sth->fetchAll();
 
