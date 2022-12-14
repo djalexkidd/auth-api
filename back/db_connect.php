@@ -153,12 +153,14 @@ class db_connect {
     }
 
     /**
-     * Supprimer un fruit
-     * @param string $fruit_name Nom du fruit
+     * Supprimer une entrée d'une table
+     * @param string $table Nom de la table
+     * @param string $column Nom de la colonne
+     * @param string $entry Nom de l'entrée
      */
-    public function delete_fruit($fruit_name) {
+    public function delete_entry($table, $column, $entry) {
         $dbh = new PDO("mysql:host=".$this->db_host.";"."dbname=".$this->db_name, $this->db_username, $this->db_password);
-        $sql = "DELETE FROM fruits WHERE name = '$fruit_name'";
+        $sql = "DELETE FROM $table WHERE $column = '$entry'";
         $stmt = $dbh->prepare($sql);
         $stmt->execute();
     }
